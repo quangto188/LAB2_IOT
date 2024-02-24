@@ -22,6 +22,8 @@ def processData(client, data):
     print(splitData)
     if splitData[1] == "T":
         client.publish("cambien1", splitData[2])
+    elif splitData[1] == "H":
+        client.publish("cambien2", splitData[2])
 
 mess = ""
 def readSerial(client):
