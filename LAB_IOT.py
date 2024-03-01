@@ -3,11 +3,12 @@ from Adafruit_IO import MQTTClient
 import time
 import random
 from simple_ai import *
+from uart import *
 AIO_FEED_ID = ["nutnhan1", "nutnhan2"]
 AIO_USERNAME = "todiuquang123"
-AIO_KEY = "aio_Bryc82Zsy18neKVVhDCK2siccoet"
+AIO_KEY = "aio_cWxo26CHS23QWaLky5oAcGgqS4mB"
 
-def connected(client):
+def connected(client): 
     print("Ket noi thanh cong ...")
     for topic in AIO_FEED_ID:
         client.subscribe(topic)
@@ -35,6 +36,7 @@ counter_ai =5
 ai_result =""
 pre_result =""
 while True:
+
     counter_ai= counter_ai-1
     if counter_ai<=0:
         counter_ai=5
@@ -43,4 +45,5 @@ while True:
         print("AI output: ", ai_result)
         if pre_result != ai_result:
             client.publish("ai", ai_result)
-    time.sleep(1)
+    readSerial(client)
+    time.sleep(1)        
